@@ -6,10 +6,12 @@
 # - 7 -> да
 # - 1 -> нет
 
-dayWeek = int(input("Ведите цифру от 1 до 7, обозначающую день недели - "))
+dayWeek = (input("Ведите цифру от 1 до 7, обозначающую день недели - "))
+dayWeek= int(dayWeek)
 if dayWeek not in range (1,7):
     print("Ввод не верен")
 else:
+    
     if dayWeek <= 5:
         print( "Это рабочий день")
     else: 
