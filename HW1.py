@@ -17,10 +17,13 @@
 
 # Напишите программу для. проверки истинности утверждения ¬(X ⋁ Y ⋁ Z) = ¬X ⋀ ¬Y ⋀ ¬Z для всех значений предикат.
 
-
-
-
-
+# x = int(input('Введите число X: '))
+# y = int(input('Введите число Y: '))
+# z = int(input('Введите число Z: '))
+# if not (x or y or z) == (not x and not y and not z):
+#     print(True)
+# else:
+#     print(False)
 
 
 # Напишите программу, которая принимает на вход координаты точки (X и Y), причём X ≠ 0 и Y ≠ 0 и выдаёт номер четверти плоскости, в которой находится эта точка (или на какой оси она находится).
@@ -79,7 +82,6 @@
 # - A (3,6); B (2,1) -> 5,09
 # - A (7,-5); B (1,-1) -> 7,21
 
-
 from math import sqrt
 ax = float(input('Input X point A - ')) 
 ay = float(input('Input Y point A - '))
@@ -88,13 +90,4 @@ by = float(input('Input Y point B - '))
 print('The distance betweуn points A and B -', round(sqrt((bx - ax)**2 + (by - ay)**2), 2))
 
 
-# def input_float() 
-# print("Input number ")
-# while True:
-#     try:
-#         x = float(input())
-#     except ValueError:
-#         print("This is not number, try again: ")
-#     else:
-#         return x
 
