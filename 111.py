@@ -669,7 +669,7 @@ max_num = max(new_list)
 min_num = min(new_list)
 print(max_num - min_num)
 
-
+new_list = [(num)%1 for num in my_list if isinstance (num, float)]   # if isinstance (num, float)]  если num вещественное
 
 в двоичное
 
@@ -783,6 +783,9 @@ for x, elem in enumerate(fibo, 2):
 nego.reverse()
 nego.append(0)
 print(nego+fibo)
+
+
+
 
 
 
