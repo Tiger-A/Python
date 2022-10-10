@@ -1324,3 +1324,683 @@ print(my)
 
 
 >>>>>>> refs/remotes/origin/main
+
+
+Семинар 6
+
+
+# 1. Напишите программу вычисления арифметического выражения заданного строкой. Используйте операции +,-,/,*. приоритет операций стандартный. 
+    
+#     *Пример:* 
+    
+#     2+2 => 4; 
+    
+#     1+2*3 => 7; 
+    
+#     1-2*3 => -5;
+    
+#     - Добавьте возможность использования скобок, меняющих приоритет операций.
+        
+#         *Пример:* 
+        
+#         1+2*3 => 7; 
+        
+#         (1+2)*3 => 9;
+        
+
+# 43. Дана последовательность чисел. Получить список уникальных элементов заданной последовательности.
+
+# *Пример:* 
+
+# [1, 2, 3, 5, 1, 5, 3, 10] => [2, 10]
+
+
+
+def split_expression(expr):
+    buffer = ""
+    result = []
+    for digit in expr:
+        if digit.isdigit():
+            buffer += digit
+        else:
+            result.append(int(buffer))
+            result.append(digit)
+            buffer = ""
+    result.append(int(buffer))
+    return result
+
+my_text = '1-2*3*4*2+8/4+9-3+7'
+my_list = list(my_text)
+print(my_list)
+
+my_list1 = eval(my_text) # Не рекомендованная функция
+print(my_list1)
+# exec(f'print({my_text})') # Не рекомендованная функция
+
+i = 1
+
+while '*' in my_list or '/' in my_list:
+    if my_list[i] == '*':
+        my_list[i-1] = int(my_list[i-1]) * int(my_list[i+1])
+        del my_list[i+1]
+        del my_list[i]
+    elif my_list[i] == '/':
+        my_list[i-1] = int(my_list[i-1]) / int(my_list[i+1])
+        del my_list[i+1]
+        del my_list[i]
+    else: i += 1    
+
+i = 1
+
+while '+' in my_list or '-' in my_list:
+    if my_list[i] == '+':
+        my_list[i-1] = int(my_list[i-1]) + int(my_list[i+1])
+        del my_list[i+1]
+        del my_list[i]
+    elif my_list[i] == '-':
+        my_list[i-1] = int(my_list[i-1]) - int(my_list[i+1])
+        del my_list[i+1]
+        del my_list[i]
+    else: i += 1   
+print(my_list)
+
+
+
+
+
+
+
+
+Исправленный Итоговый вариант:
+def calc(my_list):
+    i = 1
+
+    while '*' in my_list or '/' in my_list:
+        if my_list[i] == '*':
+            my_list[i-1] = int(my_list[i-1]) * int(my_list[i+1])
+            del my_list[i+1]
+            del my_list[i]
+        elif my_list[i] == '/':
+            my_list[i-1] = int(my_list[i-1]) / int(my_list[i+1])
+            del my_list[i+1]
+            del my_list[i]
+        else: i += 1    
+
+    i = 1
+
+    while '+' in my_list or '-' in my_list:
+        if my_list[i] == '+':
+            my_list[i-1] = int(my_list[i-1]) + int(my_list[i+1])
+            del my_list[i+1]
+            del my_list[i]
+        elif my_list[i] == '-':
+            my_list[i-1] = int(my_list[i-1]) - int(my_list[i+1])
+            del my_list[i+1]
+            del my_list[i]
+        else: i += 1
+    print('Выводим из функции результат:', my_list)
+    return my_list
+
+my_text = '1-2*3*4*(2+8*2)/4+9-3+7'
+my_list_out = list(my_text)
+print(my_list_out)
+
+while '(' in my_list_out:
+    bracket_left = my_list_out.index('(')
+    bracket_right = my_list_out.index(')')
+    my_list_out = my_list_out[:bracket_left] + calc(my_list_out[bracket_left + 1 : bracket_right]) + my_list_out[bracket_right + 1 :]
+
+print(my_text + '=>' + str(calc(my_list_out)[0]))
+
+
+
+43. Дана последовательность чисел. Получить список уникальных элементов заданной последовательности.
+
+*Пример:* 
+
+[1, 2, 3, 5, 1, 5, 3, 10] => [2, 10]
+From Сергей to Everyone 11:03 PM
+my_list = [1, 2, 3, 5, 1, 5, 3, 10]
+new_list = []
+for i in range(0,len(my_list)):
+    if my_list.count(my_list[i]) == 1:
+        new_list.append(my_list[i])
+print(new_list)
+
+
+
+
+
+
+#Задайте последовательность чисел. 
+#Напишите программу, которая выведет список неповторяющихся элементов исходной последовательности.
+enum_number = list(map(int, input("input list:").split()))
+
+enum_unique = list(filter(lambda item: enum_number.count(item) == 1, enum_number))
+
+print(enum_number, '->', enum_unique)
+
+
+lst = list(map(int, input("Введите числа через пробел:\n").split()))
+print(f"Исходный список: {lst}")
+new_lst = []
+[new_lst.append(i) for i in lst if i not in new_lst]
+print(f"Список из неповторяющихся элементов: {new_lst}")
+From Сергей to Everyone 11:10 PM
+my_list = [1, 2, 3, 5, 1, 5, 3, 10]
+new_list = []
+for i in range(len(my_list)):
+    if my_list.count(my_list[i]) == 1:
+        new_list.append(my_list[i])
+print(my_list, '=>' , new_list)
+
+
+enum_number = [1, 2, 3, 5, 1, 5, 3, 10]
+
+enum_unique = list(filter(lambda item: enum_number.count(item) == 1, enum_number))
+
+print(enum_number, '->', enum_unique)
+
+filter_unique = filter(lambda item: enum_number.count(item) == 1, enum_number)
+print(filter_unique)
+print(list(filter_unique))
+print(tuple(filter_unique))
+for i in filter_unique:
+    print(i)
+
+
+my_list = [1, 2, 3, 5, 1, 5, 3, 10]
+print(list(range(8,-4, -1)))
+for i in range(len(my_list) - 1,-1, -1):
+    if my_list.count(my_list[i]) != 1:
+        del my_list[i]
+
+
+https://github.com/BlackStoneShadow/Python/blob/main/Lesson5/Task2/Task2.py
+
+
+# Напишите программу, удаляющую из текста все слова, содержащие ""абв"".
+my_text = 'Скажика дядя ведь не даромабв Москва спалеабвнная пажаром французам отдана'
+print(my_text)
+
+my_list = my_text.split()
+print(my_list)
+
+for item in  my_list:
+    if 'абв' in item:
+        my_list.remove(item)
+
+print(my_list)
+From Sacred Sliver to Everyone 11:46 PM
+вот 3 строчки
+text_my = filter(lambda x: 'абв' not in x, text_my.split())
+my = " ".join(text_my)
+print(my)
+
+HW
+
+# 1. Напишите программу, удаляющую из текста все слова, содержащие "абв".
+import random
+# generate random words from syllables
+syllables = ["ма", "за", "ба", "ка", "ша", "бв"]
+print(random.sample(syllables,2))
+text = list(map(lambda x: "".join(random.sample(syllables,3)), range(random.randint(12,15))))
+print(f' TEXT : {" ".join(text)}')
+print(*text)
+# search for syllable "абв" and delete it with whole word
+parsed_text = list(x for x in text if "абв" not in x)
+print(f'PARSED: {" ".join(parsed_text)}')
+
+
+
+
+
+import random
+# Function checks man to take rules quantity max and min candies
+def man_quantity(min, max):
+    candy = int(input("How many candies you takes?: "))
+    while candy > max or candy < min: 
+        print ("You could take more than 0 and no more than 28 candies!")
+        candy = int(input("How many candies you takes?: "))
+    return candy
+# Function bot take random candies
+def bot_quantity(min, max):
+    candy = random.randint(min, max)
+    print(f"{bot}, takes {candy} candies")
+    return candy
+# Print rules of the game
+text = "On the desk is 2021 candies.\n\
+2 players make move one by one.\n\
+Who is first player decides the lot.\n\
+With on movie player could take no more than 28 candies\n\
+Winner is player with last move.\n\
+How many candies must take first player to win?"
+print(text)
+# Games VARS, could be changed
+candies = 221
+max = 28
+min = 1
+bot = "Bot"
+##############################
+man = input("Enter your name: ")
+# First player random choice
+lot = random.choice([man, bot])
+if lot == bot:
+    print(f'First player is {lot}')
+else:
+    print(f"{man}, you're first player")
+# Game core
+while candies > 1:
+    if lot == bot:
+        candies -= bot_quantity(min, max)
+        if candies < 0:
+            break
+        print(f'{candies} candies left')
+        lot = man
+    else:
+        candies -= man_quantity(min, max)
+        if candies < 0:
+            break
+        print(f'{candies} candies left')
+        lot = bot
+
+# Who is looser :))
+print(f"{lot}, is lost, {candies} candies!")
+
+
+
+
+
+# Создайте программу для игры с конфетами человек против человека.
+# Условие задачи: На столе лежит 2021 конфета. Играют два игрока делая ход друг после друга. Первый ход определяется жеребьёвкой. За один ход можно забрать не более чем 28 конфет. Все конфеты оппонента достаются сделавшему последний ход. Сколько конфет нужно взять первому игроку, чтобы забрать все конфеты у своего конкурента?
+# a) Добавьте игру против бота
+# b) Подумайте как наделить бота ""интеллектом""
+
+from random import randint, random
+
+n = 2021
+m = 28
+
+def my_game(who, how_many, part):
+    game_count = 1
+    if who == 0:
+        right_move = how_many % (part+1)
+        how_many = how_many - right_move
+        print(f'ХОД({game_count}) Bot: я возьму {right_move} конфет')
+        print(f'Остаток конфет: {how_many}')
+        game_count += 1
+        while how_many > 0:
+            while True and how_many>0:
+                move_player  = int(input(f'ХОД({game_count}) {player}, введите сколько конфет вы хотите взять: ')) 
+                if move_player > part:
+                    print(f'{player}, количество конфет должно быть меньше {part}')
+                    break
+                move_bot = part+1-move_player
+                how_many = how_many - move_player
+                print(f'Остаток конфет: {how_many}')
+                game_count += 1
+                print(f'ХОД({game_count}) Bot: а я возьму {move_bot}')
+                how_many = how_many - move_bot                
+                print(f'Остаток конфет: {how_many}')
+        print('Bot: я сделал последний ход и победил! Не переживай, повезет в другой раз!')
+    else:
+        while how_many >0:
+            while True and how_many>0:
+                move_player  = int(input(f'ХОД({game_count}) {player} введите сколько конфет вы хотите взять: ')) 
+                if move_player > part:
+                    print(f'{player}, количество конфет должно быть меньше {part}')
+                    break
+                how_many = how_many - move_player
+                print(f'Остаток конфет: {how_many}')
+                if how_many == 0: 
+                    print(f'{player}, ты победил, конфеты твои!!!')
+                    game_count += 1    
+                else:
+                    if 0 < how_many <= part:
+                        move_bot = how_many
+                    else:
+                        move_bot = randint(1, 28)
+                    print(f'ХОД({game_count}) Bot: а я возьму {move_bot}')
+                    how_many = how_many - move_bot
+                    print(f'Остаток конфет: {how_many}')
+                    if how_many == 0: 
+                        print('Bot: я сделал последний ход и победил! Не переживай, повезет в другой раз!')
+                    game_count += 1
+
+user_answer = input('Хотите сыграть в игру? "да"/"нет"?: ')
+if user_answer == 'да':
+    player = input('Введите свое имя: ')
+    print('Хорошо! Поехали! А вот и условие. \n На столе лежит 2021 конфета. Играют два игрока делая ход друг после друга. Первый ход определяется жеребьёвкой. За один ход можно забрать не более чем 28 конфет. Все конфеты оппонента достаются сделавшему последний ход.')
+    my_cho = int(randint(0,1))
+    if my_cho == 1:
+        print(f'{player}, Ты ходишь первый!')
+    else:
+        print('Я хожу первый!')
+        print('Поехали!')
+    my_game(my_cho, n, m)
+else:
+    print('Ну и не надо =(')
+
+
+https://github.com/sacredsliver/Python/tree/master/DZ5
+
+
+
+
+
+from random import randint
+import os
+os.system('cls')
+
+
+def checking_input(name):
+    n = (
+        input(f'\n{name}, введите количество конфет, которое возьмете от 1 до 28: '))
+    while not n.isdigit():
+        n = (
+            input(f'{name}, введите корректное количество конфет: '))
+    n = int(n)
+    os.system('cls')
+    return (n)
+
+
+def input_dat(name):
+    x = checking_input(name)
+    while x < 1 or x > 28:
+        x = checking_input(name)
+    return x
+
+
+def input_bot(name):
+    if counter1 == 0:
+        k = randint(1, 28)
+    else:
+        k = 29 - includ
+    return k
+
+
+def motion_print(name, k, counter, value):
+    print(
+        f'Ходил {name}, он взял {k} конфет, теперь у него {counter} конфет. Осталось на столе {value} конфет.')
+
+
+print('На столе лежит 2021 конфета. Играют два игрока делая ход друг после друга. Первый ход определяется жеребьёвкой. За один ход можно забрать не более чем 28 конфет. Все конфеты оппонента достаются сделавшему последний ход.')
+input('\nДля начала игры нажмите "Ввод"')
+os.system('cls')
+player1 = input('Введите имя первого игрока: ')
+player2 = input(
+    '\nВведите имя второго игрока, или введите Бот для игры с ботом: ')
+
+if player2 == 'Бот':
+    player3 = player2
+value = int(input('Введите количество конфет на столе(2021): '))
+counter1 = 0
+counter2 = 0
+counter3 = 0
+includ = 0
+print('\nКоличество конфет на столе:', value)
+flag = randint(0, 2)  # флаг очередности
+if flag:
+    print(f'Первый ходит {player1}')
+elif flag and player2 == 'Бот':
+    print(f'Первый ходит {player3}')
+else:
+    print(f'Первый ходит {player2}')
+
+while value > 28:
+    if flag:
+        k = input_dat(player1)
+        counter1 += k
+        value -= k
+        includ = k
+        flag = False
+        motion_print(player1, k, counter1, value)
+    elif player2 == 'Бот':
+        k = input_bot(player3)
+        counter3 += k
+        value -= k
+        flag = True
+        motion_print(player3, k, counter3, value)
+    else:
+        k = input_dat(player2)
+        counter2 += k
+        value -= k
+        flag = True
+        motion_print(player2, k, counter2, value)
+
+if flag:
+    print(f'Выиграл {player1}')
+else:
+    print(f'Выиграл {player2}')
+
+
+
+
+from random import randint
+import os
+os.system('cls')
+
+
+def checking_input(name):
+    n = (
+        input(f'\n{name}, введите количество конфет, которое возьмете от 1 до 28: '))
+    while not n.isdigit():
+        n = (
+            input(f'{name}, введите корректное количество конфет: '))
+    n = int(n)
+    os.system('cls')
+    return (n)
+
+
+def input_dat(name):
+    x = checking_input(name)
+    while x < 1 or x > 28:
+        x = checking_input(name)
+    return x
+
+
+def input_bot(name):
+    if counter1 == 0:
+        k = randint(1, 28)
+    else:
+        k = 29 - includ
+    return k
+
+
+def motion_print(name, k, counter, value):
+    print(
+        f'Ходил {name}, он взял {k} конфет, теперь у него {counter} конфет. Осталось на столе {value} конфет.')
+
+
+print('На столе лежит 2021 конфета. Играют два игрока делая ход друг после друга. Первый ход определяется жеребьёвкой. За один ход можно забрать не более чем 28 конфет. Все конфеты оппонента достаются сделавшему последний ход.')
+input('\nДля начала игры нажмите "Ввод"')
+os.system('cls')
+player1 = input('Введите имя первого игрока: ')
+player2 = input(
+    '\nВведите имя второго игрока, или введите Бот для игры с ботом: ')
+
+if player2 == 'Бот':
+    player3 = player2
+value = int(input('Введите количество конфет на столе(2021): '))
+counter1 = 0
+counter2 = 0
+counter3 = 0
+includ = 0
+print('\nКоличество конфет на столе:', value)
+flag = randint(0, 2)  # флаг очередности
+if flag:
+    print(f'Первый ходит {player1}')
+elif flag and player2 == 'Бот':
+    print(f'Первый ходит {player3}')
+else:
+    print(f'Первый ходит {player2}')
+
+while value > 28:
+    if flag:
+        k = input_dat(player1)
+        counter1 += k
+        value -= k
+        includ = k
+        flag = False
+        motion_print(player1, k, counter1, value)
+    elif player2 == 'Бот':
+        k = input_bot(player3)
+        counter3 += k
+        value -= k
+        flag = True
+        motion_print(player3, k, counter3, value)
+    else:
+        k = input_dat(player2)
+        counter2 += k
+        value -= k
+        flag = True
+        motion_print(player2, k, counter2, value)
+
+if flag:
+    print(f'Выиграл {player1}')
+else:
+    print(f'Выиграл {player2}')
+
+
+
+
+def field(moves):
+    y0 = f"    X1    X2   X3  "
+    y1 = f"Y1  {moves['y1']['x1']}  |  {moves['y1']['x2']}  | {moves['y1']['x3']}  "
+    y1_1 = "  -----+-----+-----"
+    y2 = f"Y2  {moves['y2']['x1']}  |  {moves['y2']['x2']}  | {moves['y2']['x3']}  "
+    y1_1 = "  -----+-----+-----"
+    y3 = f"Y3  {moves['y3']['x1']}  |  {moves['y3']['x2']}  | {moves['y3']['x3']}  "
+    print(y0)
+    print(y1)
+    print(y1_1)
+    print(y2)
+    print(y1_1)
+    print(y3)
+
+def check(move, moves):
+    if len(move) == 4:
+        if move[0].lower() == 'y' and move[2].lower() == 'x':
+            if move[1] in '123' and move[-1] in '123':
+                if moves[move[:2]][move[-2:]] == ' ':
+                    return True
+                else:
+                    print('Данная клетка уже занята.')
+            else:
+                print('Введены недопустимые значения координат.')
+        else:
+            print('Вы ввели не допустимые оси координат')
+    else:
+        print('Введено недопустимое количество символов.')
+    print('Попробуйте ещё раз!')
+    return False
+
+def wins(moves):
+    if ((moves['y1']['x1'] == moves['y1']['x2'] == moves['y1']['x3']
+            or moves['y1']['x1'] == moves['y2']['x1'] == moves['y3']['x1']
+            or moves['y1']['x1'] == moves['y2']['x2'] == moves['y3']['x3'])
+            and moves['y1']['x1'] != ' '):
+        return moves['y1']['x1']
+    elif ((moves['y2']['x1'] == moves['y2']['x2'] == moves['y2']['x3']
+           or moves['y1']['x2'] == moves['y2']['x2'] == moves['y3']['x2']
+           or moves['y1']['x3'] == moves['y2']['x2'] == moves['y3']['x1'])
+          and moves['y2']['x2'] != ' '):
+        return moves['y2']['x2']
+    elif ((moves['y3']['x1'] == moves['y3']['x2'] == moves['y3']['x3']
+           or moves['y1']['x3'] == moves['y2']['x3'] == moves['y3']['x3'])
+          and moves['y3']['x3'] != ' '):
+        return moves['y3']['x3']
+    return False
+
+
+def move(symbol, moves, player):
+    print('Текущий ход y{}x{}'.format(player[1], player[-1]))
+    if player[1] == '1':
+        if player[-1] == '1':
+            moves['y1']['x1'] = symbol
+        elif player[-1] == '2':
+            moves['y1']['x2'] = symbol
+        else:
+            moves['y1']['x3'] = symbol
+    elif player[1] == '2':
+        if player[-1] == '1':
+            moves['y2']['x1'] = symbol
+        elif player[-1] == '2':
+            moves['y2']['x2'] = symbol
+        else:
+            moves['y2']['x3'] = symbol
+    else:
+        if player[-1] == '1':
+            moves['y3']['x1'] = symbol
+        elif player[-1] == '2':
+            moves['y3']['x2'] = symbol
+        else:
+            moves['y3']['x3'] = symbol
+    return moves
+
+
+moves_out = {
+    'y1': {'x1': ' ', 'x2': ' ', 'x3': ' '},
+    'y2': {'x1': ' ', 'x2': ' ', 'x3': ' '},
+    'y3': {'x1': ' ', 'x2': ' ', 'x3': ' '}
+}
+
+field(moves_out)
+
+number_players = int(input('Введите количество игроков (1/2): '))
+count_move = 0
+
+if number_players == 2:
+    win = False
+    while not win and count_move < 9:
+        count_move += 1
+        player_out = input('Введите координаты хода(пример - y2x3): ')
+        while not check(player_out, moves_out):
+            player_out = input('Введите координаты хода(пример - y2x3): ')
+        if count_move % 2:
+            symbol_out = 'X'
+        else:
+            symbol_out = 'O'
+        moves_out = move(symbol_out, moves_out, player_out)
+
+        field(moves_out)
+        win = wins(moves_out)
+    if count_move == 9:   # баг может быть и победа на 9 ходу
+        print('Ничья!')
+    else:
+        print(f'На {count_move} ходу победили "{win}"')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+https://github.com/BlackStoneShadow/Python/blob/main/Lesson4/Task3/Task3.py
+From Roman Zavarukhin to Everyone 11:09 PM
+new_lst = []
+[new_lst.append(i) for i in lst if i not in new_lst]
+From Анатолий none to Everyone 11:09 PM
+Реализация через фильтр
