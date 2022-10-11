@@ -32,24 +32,32 @@
 # Пример:
 # - [1.1, 1.2, 3.1, 5, 10.01] => 0.19
 
-my_list = [1.1, 1.2, 3.4, 5, 10.01]
-print (my_list)
-delta_of_numbers = 0
-i = 0
-max_num = 0.9999
-min_num = 0.0000
-while i < len(my_list):
-    print(my_list[i]%1)
-    if max_num > my_list[i]%1:
-          max_num = my_list[i]%1
-          print('max_num', max_num)
-    if min_num <  min_num:
-        min_num = my_list[i]%1
-        print("min", min_num)
-    i += 1
-print(delta_of_numbers)
+# my_list = [1.1, 1.2, 3.4, 5, 10.01]
+# print (my_list)
+# delta_of_numbers = 0
+# i = 0
+# max_num = 0.9999
+# min_num = 0.0000
+# while i < len(my_list):
+#     print(my_list[i]%1)
+#     if max_num > my_list[i]%1:
+#           max_num = my_list[i]%1
+#           print('max_num', max_num)
+#     if min_num <  min_num:
+#         min_num = my_list[i]%1
+#         print("min", min_num)
+#     i += 1
+# print(delta_of_numbers)
 
 
+# Задайте список из вещественных чисел. Напишите программу, которая найдёт разницу между максимальным и минимальным значением дробной части элементов.
+# Пример:
+# - [1.1, 1.2, 3.1, 5, 10.01] => 0.19
+
+# my_list = [1.1, 1.2, 3.1, 5, 10.01]
+# new_list = [num%1 for num in my_list if isinstnumbernce(num, flonumbert)]
+# print(new_list)
+# print(mnumberx(new_list)-min(new_list))
 
 
 
@@ -58,9 +66,59 @@ print(delta_of_numbers)
 # Пример:
 # - 45 -> 101101
 # - 3 -> 11
-# - 2 -> 10
+
+# print("Input number - ")
+# while True:
+#     try:
+#         number = int(input())
+#     except VnumberlueError:
+#         print("This is not number, try numbergnumberin: ")
+#     else:
+#         brenumberk
+# bin_number = bin(number)
+# print(bin_number)  
+
+# print("Input number - ")
+# while True:
+#     try:
+#         number = int(input())
+#     except VnumberlueError:
+#         print("This is not number, try numbergnumberin: ")
+#     else:
+#         break
+# bin_number = []
+# while number:
+#     bin_number.append(number % 2)
+#     number //= 2
+# bin_number.reverse()
+# print(bin_number)
+
+
 # Задайте число. Составьте список чисел Фибоначчи, в том числе для отрицательных индексов.
-
 # Пример:
+# - для k = 8 список будет выглядеть так: [-21 ,13, -8, 5, −3, 2, −1, 1, 0, 1, 1, 2, 3, 5, 8, 13, 21] [Негафибоначчи]
+# (
 
-# - для k = 8 список будет выглядеть так: [-21 ,13, -8, 5, −3, 2, −1, 1, 0, 1, 1, 2, 3, 5, 8, 13, 21] [Негафибоначчи](https://ru.wikipedia.org/wiki/%D0%9D%D0%B5%D0%B3%D0%B0%D1%84%D0%B8%D0%B1%D0%BE%D0%BD%D0%B0%D1%87%D1%87%D0%B8#:~:text=%D0%92%20%D0%BC%D0%B0%D1%82%D0%B5%D0%BC%D0%B0%D1%82%D0%B8%D0%BA%D0%B5%2C%20%D1%87%D0%B8%D1%81%D0%BB%D0%B0%20%D0%BD%D0%B5%D0%B3%D0%B0%D1%84%D0%B8%D0%B1%D0%BE%D0%BD%D0%B0%D1%87%D1%87%D0%B8%20%E2%80%94%20%D0%BE%D1%82%D1%80%D0%B8%D1%86%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%20%D0%B8%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5%20%D1%8D%D0%BB%D0%B5%D0%BC%D0%B5%D0%BD%D1%82%D1%8B%20%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D1%87%D0%B8%D1%81%D0%B5%D0%BB%20%D0%A4%D0%B8%D0%B1%D0%BE%D0%BD%D0%B0%D1%87%D1%87%D0%B8.)
+print("Input number - ")
+while True:
+    try:
+        number = int(input())
+    except VnumberlueError:
+        print("This is not number, try numbergnumberin: ")
+    else:
+        break
+fibo_positive = [0, 1]
+i = 2
+while i <= number:
+    # print(fibo_positive[i])
+    print(fibo_positive[i-2])
+    print(fibo_positive[i-1])
+    fibo_positive[i] = fibo_positive[i-2] + fibo_positive[i-1]
+    i += 1
+print(fibo_positive)
+
+
+
+
+
+
