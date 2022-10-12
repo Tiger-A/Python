@@ -107,13 +107,13 @@ while True:
         print("This is not number, try numbergnumberin: ")
     else:
         break
-fibo_positive = [0, 1]
-i = 2
+fibo_positive = [0, 1, 1]
+i = 3
 while i <= number:
     # print(fibo_positive[i])
     print(fibo_positive[i-2])
     print(fibo_positive[i-1])
-    fibo_positive[i] = fibo_positive[i-2] + fibo_positive[i-1]
+    fibo_positive.append(fibo_positive[i-2] + fibo_positive[i-1])
     i += 1
 print(fibo_positive)
 
