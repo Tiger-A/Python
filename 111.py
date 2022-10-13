@@ -899,6 +899,7 @@ for _ in range(1, num):
 34. Даны два файла, в каждом из которых находится запись многочлена. Задача - сформировать файл, содержащий сумму многочленов.
 
 
+from __future__ import annotations
 from math import pi
 
 d =  input('Введите число для заданной точности числа Пи: ')
@@ -2133,6 +2134,313 @@ if numbers_in_text > 0:
 # If no digits exists it mean pure text, encoding
 else:
     print(f"Encoding: {encoding(text)}")
+
+
+
+
+my_text = 'Напишите абв напиабв програбвмму программу, удаляющую из \
+    этого абв текста все вабвс слова, содерабващие содержащие "абв"'
+
+def del_some_words(my_text):
+    my_text = list(filter(lambda x: 'абв' not in x, my_text.split()))
+    return " ".join(my_text)
+
+my_text = del_some_words(my_text)
+print(my_text)
+
+
+
+бот
+  def input_bot(name):
+    if counter1 == 0 and value % 29 != 0:
+        k = int(value % 29)
+    elif counter1 == 0 and value % 29 == 0:
+        k = 1
+    else:
+        k = 29 - includ
+    return k
+
+
+
+
+
+
+
+def check_win(check):
+    win_coord = ((0, 1, 2), (3, 4, 5), (6, 7, 8),
+                 (0, 3, 6), (1, 4, 7), (2, 5, 8))
+    for each in win_coord:
+        if check[each[0]] == check[each[1]] == check[each[2]]:
+            return check[each[0]]
+    return False
+
+
+
+
+print(id("x"),id("х"),id("x"))
+
+
+
+
+ Задача 4. Реализуйте RLE алгоритм: реализуйте модуль сжатия и восстановления данных.  
+
+
+import pickle
+# Сжимает файл по алгоритму RLE и сохраняет его в бинарном формате
+# сохраняется два списка (1-список символов 2-сколько раз этот символ подряд повторяется)
+def compression_rle (in_file: str,  out_file: str):
+    with open(in_file, 'r') as file_read_bin, open(out_file, 'wb') as file_write_bin:
+        not_compress_file = file_read_bin.readlines()
+        compress_file_list = []
+        repeat_char_list= []
+        for i in range(len(not_compress_file)):
+            repeat_char_index = 0
+            count_repeat_char = 0
+            for j in range(len(not_compress_file[i])):            
+                if not_compress_file[i][repeat_char_index] == not_compress_file[i][j]:
+                    count_repeat_char += 1
+                else:
+                    compress_file_list.append(not_compress_file[i][repeat_char_index])
+                    repeat_char_list.append(count_repeat_char)
+                    repeat_char_index = j
+                    count_repeat_char = 1
+            else:
+                compress_file_list.append(not_compress_file[i][repeat_char_index])
+                repeat_char_list.append(count_repeat_char)
+        pickle.dump(compress_file_list, file_write_bin)
+        pickle.dump(repeat_char_list, file_write_bin)
+
+# Распаковывает файл по алгоритму RLE и сохраняет его в оригинальном виде
+# распаковывается два списка (1-список символов 2-сколько раз этот символ подряд повторяется)
+def extract_rle (in_file: str, out_file: str):
+    with open(in_file, "rb") as file_read_bin, open(out_file, 'w') as file_write:
+        compress_list = pickle.load(file_read_bin)
+        repeat_list = pickle.load(file_read_bin)
+        result_str = ''
+        for i in range(len(compress_list)):
+            if repeat_list[i] != '\n':
+                for j in range(int(repeat_list[i])):
+                    result_str += compress_list[i]
+            else:
+                result_str += '\n'
+        file_write.writelines(result_str)
+
+
+# Заполняем тестовый файл записями 
+with open("original.txt", "w") as file:
+    file.write('TEST                                                        ' + '\n')
+    file.write('     TEST                                                   ' + '\n')
+    file.write('          TEST                                              ' + '\n')
+    file.write('               TEST                                         ' + '\n')
+    file.write('                    TEST                                    ' + '\n')
+    file.write('                         TEST                               ' + '\n')
+    file.write('WWWWWWWWWWWWWWWWWWWWWWWWW00000000000000000000000000000000000' + '\n')
+    file.write('SSSSSSSSSSSSSSSSSS111111111111111111111111TTTTTTTTTTTTTTTTTT' + '\n')
+    file.write('444444444444444444444444433333333333333333333333333333333333' + '\n')
+    file.write('999999999999999988888888888888888888888877777777777777777777' + '\n')
+    file.write('5555555          666666666666             777777777777777777' + '\n')
+
+
+# Сжимаем файл по алгоритму RLE
+compression_rle('original.txt', 'compress.bin')
+# Восстанавливаем файл по алгоритму RLE
+extract_rle('compress.bin', 'extract.txt')
+
+# Результатом работы программы являются 3 файла: original.txt, compress.bin, extract.txt
+
+
+
+
+
+Искусственный интеллект Антон, созданный Гилфойлом, взломал сеть умных холодильников. Теперь он использует их в качестве серверов "Пегого дудочника". Помогите владельцу фирмы отыскать все зараженные холодильники.
+
+Для каждого холодильника существует строка с данными, состоящая из строчных букв и цифр, и если в ней присутствует слово "anton" (необязательно рядом стоящие буквы, главное наличие последовательности букв), то холодильник заражен и нужно вывести номер холодильника, нумерация начинается с единицы
+Sample Input 1:
+6
+222anton456
+a1n1t1o1n1
+0000a0000n00t00000o000000n
+gylfole
+richard
+ant0n
+Sample Output 1:
+1 2 3
+Sample Input 2:
+9
+osfjwoiergwoignaewpjofwoeijfnwfonewfoignewtowenffnoeiwowjfninoiwfen
+anton
+aoooooooooontooooo
+elelelelelelelelelel
+ntoneeee
+tonee
+253235235a5323352n25235352t253523523235oo235523523523n
+antoooooooooooooooooooooooooooooooooooooooooooooooooooon
+unton
+Sample Output 2:
+1 2 7 8
+
+
+n = int(input())
+list1 = []
+for i in range(n):
+    a = input()
+    if 'a' in a:
+        a = a[a.find('a'):]
+        if 'n' in a:
+            a = a[a.find('n'):]
+            if 't' in a:
+                a = a[a.find('t'):]
+                if 'o' in a:
+                    a = a[a.find('o'):]
+                    if 'n' in a:
+                        list1.append(i + 1)                   
+print(*list1)
+
+
+
+
+for i in range(int(input())):
+    s, virus, x  = input(), 'anton', 0
+    for sym in s:
+        if sym == virus[x]:
+            x += 1
+        if x == 5:
+            print(i + 1, end=' ')
+            break
+
+
+
+
+
+n = int(input())
+list1 = []
+for i in range(n):
+    a = input()
+    if 'a' in a:
+        a = a[a.find('a'):]
+        if 'n' in a:
+            a = a[a.find('n'):]
+            if 't' in a:
+                a = a[a.find('t'):]
+                if 'o' in a:
+                    a = a[a.find('o'):]
+                    if 'n' in a:
+                        list1.append(i + 1)                   
+print(*list1)
+
+
+
+
+
+
+**Задание в группах:** Создать телефонный справочник с возможностью импорта и экспорта данных в нескольких форматах. 
+
+- *под форматами понимаем структуру файлов, например:в файле на одной строке хранится одна часть записи, пустая строка - разделитель
+    
+   
+
+ *Фамилия_1*
+    
+    *Имя_1*
+    
+    *Телефон_1*
+    
+    *Описание_1*
+    
+    *Фамилия_2*
+    
+    *Имя_2*
+    
+    *Телефон_2*
+    
+    *Описание_2*
+    
+    *и т.д.в файле на одной строке хранится все записи, символ разделитель - ;
+    
+    *Фамилия_1,Имя_1,Телефон_1,Описание_1*
+    
+    *Фамилия_2,Имя_2,Телефон_2,Описание_2*
+
+
+
+
+
+
+def show_menu() -> int:
+    print("\nВыберите необходимое действие:\n"
+          "1. Отобразить весь справочник\n"
+          "2. Найти абонента по фамилии\n"
+          "3. Найти абонента по номеру телефона\n"
+          "4. Добавить абонента в справочник\n"
+          "5. Сохранить справочник в текстовом формате\n"
+          "6. Закончить работу")
+    choice = int(input())
+    return choice
+
+
+
+
+def read_csv(filename: str) -> list:
+    data = []
+    fields = ["Фамилия", "Имя", "Телефон", "Описание"]
+    with open(filename, 'r', encoding='utf-8') as fin:
+        for line in fin:
+            record = dict(zip(fields, line.strip().split(',')))
+            data.append(record)
+
+
+**Задача:** Создать калькулятор для работы с рациональными и комплексными числами, организовать меню, добавив в неё систему логирования.
+
+В рамках этого обсуждения студентам надо нарисовать “архитектуру” (например, в виде блок-схемы) для работы данного приложения.
+
+
+Комплексные числа
+Комплексные числа
+сложение : 4 + 4i + 3 + 5i = 7 + 9i
+разница 5 + 4i - (7 + 2i) = -2 + 2i
+умножение (4 + 2i) * (3 + 5i) = 12 + 20i + 6i + 10i^2 = 12 + 26i + 10 *(-1) = 12 + 26i - 10 = 2 + 26i
+
+
+
+Встроенная функция complex()
+Встроенная функция complex(real[, imag]) позволяет создать комплексное число на основе значений его действительной и мнимой частей:
+>>> complex(1)    #  аргумент imag не обязателен
+(1+0j)
+>>> 
+>>> complex(1, 2e-2)
+(1+0.02j)
+Приятным сюрпризом данной функции, является то что она может создавать комплексное число из строки. Но с небольшой оговоркой, эта строка должна быть допустимым литералом комплексного числа:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
