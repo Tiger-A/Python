@@ -99,23 +99,27 @@
 # - для k = 8 список будет выглядеть так: [-21 ,13, -8, 5, −3, 2, −1, 1, 0, 1, 1, 2, 3, 5, 8, 13, 21] [Негафибоначчи]
 # (
 
+from audioop import reverse
 print("Input number - ")
 while True:
     try:
         number = int(input())
     except VnumberlueError:
-        print("This is not number, try numbergnumberin: ")
+        print("This is not number, try again: ")
     else:
         break
 fibo_positive = [0, 1, 1]
+fibo_negative = [1, -1]
 i = 3
 while i <= number:
-    # print(fibo_positive[i])
-    print(fibo_positive[i-2])
-    print(fibo_positive[i-1])
-    fibo_positive.append(fibo_positive[i-2] + fibo_positive[i-1])
-    i += 1
-print(fibo_positive)
+        fibo_positive.append(fibo_positive[i-2] + fibo_positive[i-1])
+        fibo_negative.append(fibo_negative[i-3] - fibo_negative[i-2])
+        print(i)
+        i += 1
+fibo_negative.reverse()
+print(fibo_negative + fibo_positive)
+
+
 
 
 
