@@ -928,17 +928,7 @@ print(lst)
 
 
 
-N=int(input("Задайте натуральное число N:"))
-T=N
-rez=[]
-for i in range(2,int((N/2)+1)):# идем по тупому алгоритму с перебором чисел до почти половины N
-  while ((T/i)==int(T/i)):
-    T/=i
-    rez.append(i)
-if len(rez)>0:
-  print("для N =",N," простые множители это ->",rez)
-else:
-  print("число N = ",N," оно не имеет множителей,т.к. оно само простое")
+
 
 
 
@@ -2412,6 +2402,253 @@ def read_csv(filename: str) -> list:
 Приятным сюрпризом данной функции, является то что она может создавать комплексное число из строки. Но с небольшой оговоркой, эта строка должна быть допустимым литералом комплексного числа:
 
 
+телефон справ
+https://github.com/sacredsliver/Python/tree/master/DZ7
+
+
+**Задание в группах:** Создать телефонный справочник с возможностью импорта и экспорта данных в нескольких форматах. 
+
+- *под форматами понимаем структуру файлов, например:в файле на одной строке хранится одна часть записи, пустая строка - разделитель*
+    
+    *Фамилия_1*
+    
+    *Имя_1*
+    
+    *Телефон_1*
+    
+    *Описание_1*
+    
+    *Фамилия_2*
+    
+    *Имя_2*
+    
+    *Телефон_2*
+    
+    *Описание_2*
+    
+    *и т.д.в файле на одной строке хранится все записи, символ разделитель - **;***
+    
+    *Фамилия_1,Имя_1,Телефон_1,Описание_1*
+    
+    *Фамилия_2,Имя_2,Телефон_2,Описание_2*
+    
+    *и т.д.*
+
+https://github.com/tr4k87/DZ7.git
+
+https://github.com/tr4k87/DZ7.git
+
+
+
+
+
+## Групповая работа [2]
+
+
+
+
+
+
+**Задача:** Создать информационную систему позволяющую работать с сотрудниками некой компании \ студентами вуза \ учениками школы
+
+**Задача:** Создать информационную систему позволяющую работать с сотрудниками некой компании \ студентами вуза \ учениками школы
+
+*(прямая отсылка [к первому семинару “введение в базы данных”](https://www.notion.so/ada887424df04be6b876ee8734aabcf1))*
+
+<aside>
+❗ Решение каждой задачи начинается с обсуждения, только после этого пишется код.
+
+</aside>
+
+
+model.py
+
+
+BASE = "base.csv"
+
+def edit(id, data):
+    res = []
+    with open(BASE, "r") as file:
+        base = file.read().split('\n') 
+        for item in base:
+            line = item.split(';')
+            if line[0] == id:
+                line = data
+                res.append(line)
+            else:
+                res.append(line)
+    with open(BASE, "w") as file:
+        file.write(res)
+    return "Success"
+
+def upload(file):
+    with open(BASE, "a") as file:
+        file.writelines(f'{data[0]};{data[1]};{data[2]};{data[3]};{data[4]};{data[5]};{data[6]};{data[7]}\n')
+    return "Запись сохранена"
+
+def add(data):
+    with open(BASE, "a") as file:
+        file.writelines(f'{data[0]};{data[1]};{data[2]};{data[3]};{data[4]};{data[5]};{data[6]};{data[7]}\n')
+    return "Запись сохранена"
+
+def find(data):
+    res = []
+    with open(BASE, "r") as file:
+        base = file.read().split('\n') 
+        for item in base:
+            line = item.split(';')
+            lists = list(filter(None, data))
+            if set(lists).issubset(line) and len(line) > 1:
+                res.append(line)
+    return res
+
+def delete(data):
+    res = []
+    with open(BASE, "r") as file:
+        base = file.read().split('\n') 
+        for item in base:
+            line = item.split(';')
+            lists = list(filter(None, data))
+            if not set(lists).issubset(line) and len(line) > 1:
+                res.append(line)
+
+
+
+работа со словарями
+
+
+
+my_dict = {3:'Иванов', 1: 'Васльев', 4:'Петров'}
+
+
+for elem in sorted(my_dict):
+    print(elem)
+    print(elem, my_dict[elem])
+    
+for key, value in sorted(my_dict.items()):
+    print(key, value)
+
+print(my_dict)
+print(sorted(my_dict))
+print(my_dict.items())
+print(type(my_dict.items()))
+print(sorted(my_dict.items()))
+print(my_dict.keys())
+print(sorted(my_dict.keys()))
+print(my_dict.values())
+print(sorted(my_dict.values()))
+
+my_list = [(1, 'a', True),(2, 'b', False),(3, 'x', True)]
+for first, second, third in my_list:
+    print(first)
+    print(second)
+    print(third)
+    print()
+    print('Следующй цилк')
+
+
+
+
+
+
+def find_by_number(data: list, phone_number: str) -> str:
+    for el in data:
+        if el.get("Телефон") == phone_number:
+            return f'{el.get("Фамилия")}, {el.get("Имя")}'
+    return "Такой абонент отсутвует"
+
+
+
+
+
+
+РЕШЕНИЕ ДЛЯ WINDOWS - В Windows при установке Python необходимо было установить галочку для установки pip, установить путь Python в папку с:\Program Files, а не в User, и обязательно поставить галочку add PATH
+
+pip install -r requirements.txt
+
+
+
+/start
+From Igor to Everyone 10:25 PM
+это есть в лекции
+From Сергей Сердюк to Everyone 10:26 PM
+/newbot
+
+
+сайт pythonanywhere
+
+https://www.pythonanywhere.com/
+
+
+
+## Групповая работа [2]
+
+Учимся настраивать виртуальное окружение и работать с [PIP](https://pypi.org/)
+
+В качестве пробы библиотек к программам предыдущего модуля подключить работу с XML \ JSON
+
+> Для тренировки можно создания телеграм-бота полезные ссылки:
+> 
+> 
+> [https://core.telegram.org/bots](https://core.telegram.org/bots)
+> 
+> [https://github.com/python-telegram-bot/python-telegram-bot](https://github.com/python-telegram-bot/python-telegram-bot)
+> 
+> [https://core.telegram.org/bots/api#authorizing-your-bot](https://core.telegram.org/bots/api#authorizing-your-bot)
+> 
+> [https://core.telegram.org/bots/api#available-methods](https://core.telegram.org/bots/api#available-methods)
+> 
+> [https://core.telegram.org/bots/api#user](https://core.telegram.org/bots/api#user)
+>
+**Задача:** при помощи виртуального окружения и PIP реализовать решение задач с прошлых семинаров:
+
+1. Напишите программу, удаляющую из текста все слова, содержащие "абв".
+2. Создайте программу для игры с конфетами человек против человека.
+    
+    Условие задачи: На столе лежит 2021 конфета. Играют два игрока делая ход друг после друга. Первый ход определяется жеребьёвкой. За один ход можно забрать не более чем 28 конфет. Все конфеты оппонента достаются сделавшему последний ход. Сколько конфет нужно взять первому игроку, чтобы забрать все конфеты у своего конкурента?
+    
+    a) Добавьте игру против бота
+    
+    b) Подумайте как наделить бота "интеллектом"
+
+
+
+
+
+
+
+
+
+from telegram import Update
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
+
+
+async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    await update.message.reply_text(f'Hello {update.effective_user.first_name}')
+
+async def abc(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    msg = update.message.text
+    msg = filter(lambda x: 'ов' not in x, msg.split())
+    my = " ".join(msg)
+    await update.message.reply_text(my)
+
+app = ApplicationBuilder().token("Указать свой токен").build()
+
+app.add_handler(CommandHandler("hello", hello))
+app.add_handler(CommandHandler("abc", abc))
+app.run_polling()
+
+
+бот конфет
+
+def bot_quantity(candies):
+    if candies > 28:
+        candy = candies%(29)
+    else:
+        candy = candies
+    # candy = random.randint(min, max)
+    print(f"{bot}, takes {candy} candies")
+    return candy
 
 
 
@@ -2422,6 +2659,109 @@ def read_csv(filename: str) -> list:
 
 
 
+    from telegram import Update
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
+
+
+async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    await update.message.reply_text(f'Hello {update.effective_user.first_name}')
+
+async def abc(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    msg = update.message.text
+    msg = filter(lambda x: 'ов' not in x, msg.split())
+    my = " ".join(msg)
+    await update.message.reply_text(my)
+
+app = ApplicationBuilder().token("Указать свой токен").build()
+
+app.add_handler(CommandHandler("hello", hello))
+app.add_handler(CommandHandler("abc", abc))
+app.run_polling()
+
+
+
+pip install python-telegram-bot --pre
+
+
+
+
+
+
+SacredSliver, [10/20/2022 11:02 PM]
+from telegram import Update
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
+
+
+async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    await update.message.reply_text(f'Hello {update.effective_user.first_name}')
+
+async def abc(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    msg = update.message.text
+    msg = filter(lambda x: 'ов' not in x, msg.split())
+    my = " ".join(msg)
+    await update.message.reply_text(my)
+
+app = ApplicationBuilder().token("Указать свой токен").build()
+
+app.add_handler(CommandHandler("hello", hello))
+app.add_handler(CommandHandler("abc", abc))
+app.run_polling()
+
+Olga D, [10/20/2022 11:27 PM]
+[In reply to Николай Мануилов]
+Больше похоже на то, что ГБ отмазывается от нас, чем на правду - типа с начала лета оптимизация, однако в сентябре они мне подтверждают, что у меня программа 2 года ,  буквально через пару дней - год - и то об этом узнаешь чисто случайно.  А сообщить-то не судьба? Говорят, что "мы не смогли уместить больше на 2035, но у вас будет "все" и гораздо больше" . А по факту, что мы имеем? Вот вам  - Курсы по компьютерной грамотности - ибо это , наверное, главное в ИИ
+
+Dmitry, [10/21/2022 12:50 AM]
+from telegram import Update
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
+
+
+
+def bot_quantity():
+    global candies
+    if candies > 28:
+        candy = candies % 29
+    else:
+        candy = candies
+    # candy = random.randint(min, max)
+    # print(f"{bot}, takes {candy} candies")
+    return candy
+
+async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    await update.message.reply_text(f'Hello {update.effective_user.first_name}')
+
+async def new_game(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    global candies
+    candies = 100
+
+async def game(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    global candies
+    
+    msg = update.message.text
+    msg = msg.split()[1]    
+    msg_number = int(msg)
+    candies -= msg_number
+    await update.message.reply_text(f'Осталось конфет {candies}')
+    bot_candy = bot_quantity()
+    await update.message.reply_text(f'Бот {bot_candy} конфет')
+    candies -= bot_candy
+    await update.message.reply_text(f'Осталось конфет {candies}')
+
+async def abc(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    msg = update.message.text
+    msg = filter(lambda x: 'ов' not in x, msg.split())
+    my = " ".join(msg)
+    await update.message.reply_text(my)
+    
+candies = 100
+
+app = ApplicationBuilder().token('Ваш Токен').build()
+
+app.add_handler(CommandHandler("hello", hello))
+app.add_handler(CommandHandler("abc", abc))
+app.add_handler(CommandHandler("new_game", new_game))
+app.add_handler(CommandHandler("game", game))
+app.run_polling()
 
 
 
@@ -2432,42 +2772,3 @@ def read_csv(filename: str) -> list:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-https://github.com/BlackStoneShadow/Python/blob/main/Lesson4/Task3/Task3.py
-From Roman Zavarukhin to Everyone 11:09 PM
-new_lst = []
-[new_lst.append(i) for i in lst if i not in new_lst]
-From Анатолий none to Everyone 11:09 PM
-Реализация через фильтр
