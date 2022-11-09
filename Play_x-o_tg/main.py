@@ -1,7 +1,7 @@
 #python-telegram-bot==13.14
-from telegram.ext import Updater, CommandHandler, Filters,MessageHandler
+from telegram.ext import Updater, CommandHandler, Filters, MessageHandler
 from bot_commands import *
-from API import TOKEN #файл с токеном
+from API import TOKEN #токен
     
 app = Updater(TOKEN)
 dispatcher = app.dispatcher
