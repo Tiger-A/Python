@@ -3096,3 +3096,93 @@ def callback_func(query):
 
 bot.polling()
 
+
+
+
+1. Прикрутить бота к задачам с предыдущего семинара:
+    1. **Создать калькулятор для работы с рациональными и комплексными числами, организовать меню, добавив в неё систему логирования**
+
+
+
+
+import telebot
+from telebot import types
+bot = telebot.TeleBot('TOKEN')
+
+
+@bot.message_handler(commands=['start'])
+def category(message):
+    bot.send_message(message.from_user.id, 'Введи выражение:')
+    bot.register_next_step_handler(message, calc)
+    
+
+def calc(message):
+    spy(message)
+    value = message.text
+    value = str(eval(value))
+    bot.send_message(message.from_user.id, value)
+
+def spy(message):
+    file = open('db.csv', 'a')
+    file.write(f'{message.from_user.first_name}, {message.from_user.id}, {message.text}\n')
+    file.close()
+
+bot.polling(none_stop=True, interval=0)
+
+
+
+http://kodesource.top/python-exercises/pandas/practice-set1/index.php
+
+
+
+## Групповая работа [2]
+
+Дана функция f(x) = 5x^2 + 10x - 30
+
+1. Определить корни
+
+2. Найти интервалы, на которых функция возрастает
+
+3. Найти интервалы, на которых функция убывает
+
+4. Построить график
+
+5. Вычислить вершину
+
+6. Определить промежутки, на котором f > 0
+
+7. Определить промежутки, на котором f < 0
+
+
+
+x = symbols('x')
+
+lower_bound = -5
+upper_bound = 5
+f = 5*x**2*10*x-30
+
+zeros = solveset(f, x, domain=Interval(lower_bound, upper_bound))
+assert zeros.is_FiniteSet # If there are infinite solutions the next line will hang.
+res_min = Min(f.subs(x, lower_bound), f.subs(x, upper_bound), *[f.subs(x, i) for i in zeros])
+res_max = Max(f.subs(x, lower_bound), f.subs(x, upper_bound), *[f.subs(x, i) for i in zeros])
+
+http://www.mathprofi.ru/opredelenie_proizvodnoi_smysl_proizvodnoi.html
+
+
+diff  вычисление производной
+
+
+def csolve(a, b, c):  #нахождение корней
+    d = b**2 - 4*a*c
+    x1 = (-b + cmath.sqrt(d)) / (2 * a)
+    x2 = (-b - cmath.sqrt(d)) / (2 * a)
+    return (x1, x2)
+
+
+
+
+x1, x2 = csolve(5,10,30)
+print('Первый корень =', x1)
+print('Второй корень =', x2)
+
+
